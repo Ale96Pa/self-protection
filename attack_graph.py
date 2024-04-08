@@ -170,10 +170,64 @@ def generate_paths(network_file, G, target_ids, src_ids=None):
             
     return list_risk_values
 
+## TODO: remove
+def generate_input_cti(network_file, G, target_ids, src_ids=None):
+    node_types = nx.get_node_attributes(G,"type")
+    with open(network_file) as nf:
+        vulnerabilities = json.load(nf)["vulnerabilities"]
+    
+    sources,goals=[],[]
+    for n in G.nodes:
+        if "@" in n and node_types[n] != "vulnerability": 
+            privilege,hostid=n.split("@")
+            if hostid in target_ids: goals.append(n)
+            if not src_ids and not hostid in target_ids: sources.append(n)
+            if src_ids and hostid in src_ids: sources.append(n)
+    
+    list_risk_values=[]
+    for s in sources:
+        for t in goals:
+            current_paths = list(nx.all_simple_paths(G, source=s, target=t))
+            for single_path in current_paths:
+                vulns_path=[]
+                path_trace=''
+                for node_p in single_path:
+                    path_trace=path_trace+'#'+node_p
+                    if node_types[node_p] == "vulnerability":
+                        vulns_path.append(node_p)
+                if len(vulns_path)<=0: continue
+                # risk_val = compute_risk_analysis(vulns_path, vulnerabilities)
+                risk_val={}
+                risk_val['path']=path_trace
+                list_risk_values.append(risk_val)
+            if len(list_risk_values)<=0: continue
+
+    onehope_edges={}
+    for path in list_risk_values:
+        trace_components=path["path"].split("#")[1:]
+        for i in range(0,len(trace_components)-1):
+            if trace_components[i] not in onehope_edges.keys(): onehope_edges[trace_components[i]] = [trace_components[i+1]]
+            else: onehope_edges[trace_components[i]].append(trace_components[i+1])
+    
+    format_edges=[]
+    for k in onehope_edges.keys():
+        format_edges.append({
+            "src":k,
+            "connected_to":list(set(onehope_edges[k]))
+        })
+    
+    with open("test_paths.json", "w") as outfile:
+        json_data = json.dumps({"edges":format_edges},
+                    default=lambda o: o.__dict__, indent=2)
+        outfile.write(json_data)
+    
+    return list_risk_values
+
 def analyze_paths(attack_paths, targets):
     clients={}
     for path in attack_paths:
         trace_components=path["path"].split("#")
+        notConsidered=True
         for node in trace_components:
             if "@" not in node or "CVE" in node: continue
             dev_id=node.split("@")[1]
@@ -182,8 +236,9 @@ def analyze_paths(attack_paths, targets):
                     "count":1,
                     "risks":[path["risk"]]}
             else: 
-                clients[dev_id]["count"]+=1
+                if notConsidered: clients[dev_id]["count"]+=1
                 clients[dev_id]["risks"].append(path["risk"])
+            notConsidered=False
     # remove target devices because do not partecipate to the internal paths
     for t in targets:
         clients.pop(t)
