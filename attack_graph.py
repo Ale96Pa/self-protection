@@ -72,19 +72,14 @@ def retrieve_privileges(vulnID,vulnerabilities):
             else:
                 return vuln,"guest","guest"
 
-def generate_ag_model(network_file):
-    with open(network_file) as nf:
-        content_network = json.load(nf)
-    reachability_edges = content_network["edges"]
-    vulnerabilities = content_network["vulnerabilities"]
-    devices = content_network["devices"]
-        
+def generate_ag_model(devices,vulnerabilities,reachability_edges,ignore_vulns=[],on_dev=[]):
     G = nx.DiGraph()
     for r_edge in reachability_edges:
         src=r_edge[0]
         dst=r_edge[1]
         dev_vulns=get_vulns_by_hostid(dst,devices)
         for v in dev_vulns:
+            if v in ignore_vulns and dst in on_dev: continue
             vuln,precondition,postcondition = retrieve_privileges(v,vulnerabilities)
 
             req_node = precondition+"@"+str(src)
@@ -138,10 +133,10 @@ def compute_risk_analysis(vuln_ids, vulns_list):
         "risk":(imp_risk)*(lik_risk),
     }
 
-def generate_paths(network_file, G, target_ids, src_ids=None):
+def generate_paths(vulnerabilities, G, target_ids, src_ids=None):
     node_types = nx.get_node_attributes(G,"type")
-    with open(network_file) as nf:
-        vulnerabilities = json.load(nf)["vulnerabilities"]
+    # with open(network_file) as nf:
+    #     vulnerabilities = json.load(nf)["vulnerabilities"]
     
     sources,goals=[],[]
     for n in G.nodes:
@@ -170,60 +165,7 @@ def generate_paths(network_file, G, target_ids, src_ids=None):
             
     return list_risk_values
 
-## TODO: remove
-def generate_input_cti(network_file, G, target_ids, src_ids=None):
-    node_types = nx.get_node_attributes(G,"type")
-    with open(network_file) as nf:
-        vulnerabilities = json.load(nf)["vulnerabilities"]
-    
-    sources,goals=[],[]
-    for n in G.nodes:
-        if "@" in n and node_types[n] != "vulnerability": 
-            privilege,hostid=n.split("@")
-            if hostid in target_ids: goals.append(n)
-            if not src_ids and not hostid in target_ids: sources.append(n)
-            if src_ids and hostid in src_ids: sources.append(n)
-    
-    list_risk_values=[]
-    for s in sources:
-        for t in goals:
-            current_paths = list(nx.all_simple_paths(G, source=s, target=t))
-            for single_path in current_paths:
-                vulns_path=[]
-                path_trace=''
-                for node_p in single_path:
-                    path_trace=path_trace+'#'+node_p
-                    if node_types[node_p] == "vulnerability":
-                        vulns_path.append(node_p)
-                if len(vulns_path)<=0: continue
-                # risk_val = compute_risk_analysis(vulns_path, vulnerabilities)
-                risk_val={}
-                risk_val['path']=path_trace
-                list_risk_values.append(risk_val)
-            if len(list_risk_values)<=0: continue
-
-    onehope_edges={}
-    for path in list_risk_values:
-        trace_components=path["path"].split("#")[1:]
-        for i in range(0,len(trace_components)-1):
-            if trace_components[i] not in onehope_edges.keys(): onehope_edges[trace_components[i]] = [trace_components[i+1]]
-            else: onehope_edges[trace_components[i]].append(trace_components[i+1])
-    
-    format_edges=[]
-    for k in onehope_edges.keys():
-        format_edges.append({
-            "src":k,
-            "connected_to":list(set(onehope_edges[k]))
-        })
-    
-    with open("test_paths.json", "w") as outfile:
-        json_data = json.dumps({"edges":format_edges},
-                    default=lambda o: o.__dict__, indent=2)
-        outfile.write(json_data)
-    
-    return list_risk_values
-
-def analyze_paths(attack_paths, targets):
+def analyze_paths(attack_paths, strategies=[0]):
     clients={}
     for path in attack_paths:
         trace_components=path["path"].split("#")
@@ -239,9 +181,9 @@ def analyze_paths(attack_paths, targets):
                 if notConsidered: clients[dev_id]["count"]+=1
                 clients[dev_id]["risks"].append(path["risk"])
             notConsidered=False
-    # remove target devices because do not partecipate to the internal paths
-    for t in targets:
-        clients.pop(t)
+    # # remove target devices because do not partecipate to the internal paths
+    # for t in targets:
+    #     clients.pop(t)
     
     # determine the risk of single clients
     metrics=[]
@@ -251,14 +193,41 @@ def analyze_paths(attack_paths, targets):
         max_risk=max(client_i["risks"])
         weighted_risk=count*max_risk
 
+        for strategy in strategies:
+            metrics.append({
+                'device':k,
+                'strategy':strategy,
+                'perc_paths':count,
+                'risk':max_risk,
+                "w_risk":weighted_risk
+            })
+    # with open('data/metrics.csv', 'a', encoding='utf8', newline='') as output_file:
+    #     fc = csv.DictWriter(output_file, fieldnames=metrics[0].keys())
+    #     fc.writeheader()
+    #     fc.writerows(metrics)
+    return metrics
+
+
+def analyze_network(attack_paths, strategies=[0]):
+    
+    likelihoods=[]
+    impacts=[]
+    risks=[]
+    lengths=[]
+    for path in attack_paths:
+       likelihoods.append(path['likelihood'])
+       impacts.append(path['impact'])
+       risks.append(path['risk'])
+       lengths.append(path['path'].count('CVE'))
+    
+    metrics=[]
+    for strategy in strategies:
         metrics.append({
-            'client':k,
-            'perc_paths':count,
-            'risk':max_risk,
-            "w_risk":weighted_risk
+            'strategy':strategy,
+            "avg_lik": sum(likelihoods)/len(likelihoods),
+            "avg_imp": sum(impacts)/len(impacts),
+            "avg_risk": sum(risks)/len(risks),
+            "avg_len": sum(lengths)/len(lengths),
         })
-    with open('data/metrics.csv', 'w', encoding='utf8', newline='') as output_file:
-        fc = csv.DictWriter(output_file, fieldnames=metrics[0].keys())
-        fc.writeheader()
-        fc.writerows(metrics)
-    return clients
+    
+    return metrics

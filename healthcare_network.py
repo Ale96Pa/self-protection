@@ -65,7 +65,7 @@ def generate_vuln_files():
     time.sleep(6)
     ### Postgres
     vuln_postgres=[]
-    cve_postgres = nvdlib.searchCVE(keywordSearch='postgresql 15.5')
+    cve_postgres = nvdlib.searchCVE(keywordSearch='postgresql 15')
     for cve in cve_postgres: 
         vuln_postgres.append(cve)
     with open("data/NIST/postgres.json", "w") as outfile:
@@ -76,7 +76,7 @@ def generate_vuln_files():
     time.sleep(6)
     ### filebrowser
     vuln_file=[]
-    cve_file = nvdlib.searchCVE(keywordSearch='filebrowser 2.22')
+    cve_file = nvdlib.searchCVE(keywordSearch='filebrowser 2')
     for cve in cve_file: 
         vuln_file.append(cve)
     with open("data/NIST/file.json", "w") as outfile:
@@ -293,5 +293,5 @@ def build_healtcare_net(num_ecg=1,num_xray=1,num_mac=1,num_win=1,num_db=1,num_fi
 
 if __name__ == "__main__":
     # build_panacea_reachability("data/reachabilityInventory.json")
-    # generate_vuln_files()
+    generate_vuln_files()
     build_healtcare_net()

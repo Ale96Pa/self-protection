@@ -1,19 +1,22 @@
 import json
-from attack_graph import generate_ag_model, generate_paths, analyze_paths, generate_input_cti
+from attack_graph import generate_ag_model, generate_paths, analyze_paths
 
 if __name__ == "__main__":
-    target_devices=['242cc9e9-a930-4036-b7a8-6255fe8cc486']
 
-    file_network = "data/federated_network.json"
+    file_network = "data/healthcare_network.json"
+    with open(file_network) as nf:
+        devices = json.load(nf)["devices"]
+    dev_IDs=[]
+    for d in devices: dev_IDs.append(d["id"])
 
-    AG = generate_ag_model(file_network)
-    paths = generate_paths(file_network, AG, target_devices)
-    clients_risks = analyze_paths(paths, target_devices)
 
-    generate_input_cti(file_network, AG, target_devices)
-    # print(pp)
+    # AG = generate_ag_model(file_network)
+    # paths = generate_paths(file_network, AG, dev_IDs, dev_IDs)
+    # dev_risks = analyze_paths(paths, dev_IDs)
+
+
     
-    with open("data/attack_paths.json", "w") as outfile:
-        json_data = json.dumps({"paths":paths},
-                    default=lambda o: o.__dict__, indent=2)
-        outfile.write(json_data)
+    # with open("data/attack_paths.json", "w") as outfile:
+    #     json_data = json.dumps({"paths":paths},
+    #                 default=lambda o: o.__dict__, indent=2)
+    #     outfile.write(json_data)
