@@ -44,7 +44,8 @@ def strategy_host(devices,vulnerabilities,edges,dev_removed):
     # return analyze_paths(paths, ["2-"+dev_removed])
     return analyze_network(paths, ["2#"+dev_removed])
 
-if __name__ == "__main__":
+def run_ag_simulator():
+# if __name__ == "__main__":
     file_network = "data/healthcare_network.json"
     with open(file_network) as nf:
         content = json.load(nf)
