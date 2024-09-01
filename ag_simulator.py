@@ -66,7 +66,7 @@ if __name__ == "__main__":
             dev_vuln=get_vulns_by_hostid(d['id'],devices)
             if v['id'] in dev_vuln:
                 metrics_vuln+=strategy_vulnerability(devices,vulnerabilities,edges,d["id"],v["id"])
-                print(d["id"],v["id"])
+                # print(d["id"],v["id"])
              
 
     metrics=metrics_nostrategy+metrics_host+metrics_vuln
