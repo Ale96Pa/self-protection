@@ -1,0 +1,311 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d1" for="node" attr.name="color" attr.type="string" />
+  <key id="d0" for="node" attr.name="type" attr.type="string" />
+  <graph edgedefault="directed">
+    <node id="NONE@7b9cc9ef-f34d-4fcf-80cb-e716375e96e1">
+      <data key="d0">privilege</data>
+      <data key="d1">green</data>
+    </node>
+    <node id="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6">
+      <data key="d0">privilege</data>
+      <data key="d1">green</data>
+    </node>
+    <node id="CVE-2024-0985@773b7113-fc91-40aa-bbcf-5434e29664b6">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="ROOT@773b7113-fc91-40aa-bbcf-5434e29664b6">
+      <data key="d0">privilege</data>
+      <data key="d1">green</data>
+    </node>
+    <node id="CVE-2016-1255@773b7113-fc91-40aa-bbcf-5434e29664b6">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2024-4317@773b7113-fc91-40aa-bbcf-5434e29664b6">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="ROOT@7b9cc9ef-f34d-4fcf-80cb-e716375e96e1">
+      <data key="d0">privilege</data>
+      <data key="d1">green</data>
+    </node>
+    <node id="CVE-2020-15486@7b9cc9ef-f34d-4fcf-80cb-e716375e96e1">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2024-32368@7b9cc9ef-f34d-4fcf-80cb-e716375e96e1">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="ROOT@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d">
+      <data key="d0">privilege</data>
+      <data key="d1">green</data>
+    </node>
+    <node id="CVE-2021-46398@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d">
+      <data key="d0">privilege</data>
+      <data key="d1">green</data>
+    </node>
+    <node id="NONE@4d911f09-880e-4a2f-a458-8458fc0aad04">
+      <data key="d0">privilege</data>
+      <data key="d1">green</data>
+    </node>
+    <node id="ROOT@4d911f09-880e-4a2f-a458-8458fc0aad04">
+      <data key="d0">privilege</data>
+      <data key="d1">green</data>
+    </node>
+    <node id="CVE-2017-9288@4d911f09-880e-4a2f-a458-8458fc0aad04">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2017-18531@4d911f09-880e-4a2f-a458-8458fc0aad04">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="USER@4d911f09-880e-4a2f-a458-8458fc0aad04">
+      <data key="d0">privilege</data>
+      <data key="d1">green</data>
+    </node>
+    <node id="CVE-2002-2036@4d911f09-880e-4a2f-a458-8458fc0aad04">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="NONE@8f347a1c-08eb-46dc-aaa8-aff5a2461f61">
+      <data key="d0">privilege</data>
+      <data key="d1">green</data>
+    </node>
+    <node id="ROOT@8f347a1c-08eb-46dc-aaa8-aff5a2461f61">
+      <data key="d0">privilege</data>
+      <data key="d1">green</data>
+    </node>
+    <node id="CVE-2021-34423@8f347a1c-08eb-46dc-aaa8-aff5a2461f61">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2020-8140@8f347a1c-08eb-46dc-aaa8-aff5a2461f61">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2021-23827@8f347a1c-08eb-46dc-aaa8-aff5a2461f61">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2023-24068@8f347a1c-08eb-46dc-aaa8-aff5a2461f61">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2021-34424@8f347a1c-08eb-46dc-aaa8-aff5a2461f61">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2024-27247@8f347a1c-08eb-46dc-aaa8-aff5a2461f61">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2024-37885@8f347a1c-08eb-46dc-aaa8-aff5a2461f61">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2023-43799@8f347a1c-08eb-46dc-aaa8-aff5a2461f61">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="NONE@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa">
+      <data key="d0">privilege</data>
+      <data key="d1">green</data>
+    </node>
+    <node id="guest@773b7113-fc91-40aa-bbcf-5434e29664b6">
+      <data key="d0">privilege</data>
+      <data key="d1">green</data>
+    </node>
+    <node id="guest@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa">
+      <data key="d0">privilege</data>
+      <data key="d1">green</data>
+    </node>
+    <node id="CVE-2024-2403@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2023-1939@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="ROOT@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa">
+      <data key="d0">privilege</data>
+      <data key="d1">green</data>
+    </node>
+    <node id="CVE-2024-0589@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2024-3545@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2023-5766@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2023-2282@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2023-4417@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2024-6492@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2023-5765@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2024-6354@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2004-2527@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2023-1574@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2016-0190@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2022-4287@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="CVE-2024-6055@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa">
+      <data key="d0">vulnerability</data>
+      <data key="d1">blue</data>
+    </node>
+    <node id="guest@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d">
+      <data key="d0">privilege</data>
+      <data key="d1">green</data>
+    </node>
+    <edge source="NONE@7b9cc9ef-f34d-4fcf-80cb-e716375e96e1" target="CVE-2024-0985@773b7113-fc91-40aa-bbcf-5434e29664b6" />
+    <edge source="NONE@7b9cc9ef-f34d-4fcf-80cb-e716375e96e1" target="CVE-2016-1255@773b7113-fc91-40aa-bbcf-5434e29664b6" />
+    <edge source="NONE@7b9cc9ef-f34d-4fcf-80cb-e716375e96e1" target="CVE-2024-4317@773b7113-fc91-40aa-bbcf-5434e29664b6" />
+    <edge source="NONE@7b9cc9ef-f34d-4fcf-80cb-e716375e96e1" target="CVE-2021-46398@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2020-15486@7b9cc9ef-f34d-4fcf-80cb-e716375e96e1" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2024-32368@7b9cc9ef-f34d-4fcf-80cb-e716375e96e1" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2017-9288@4d911f09-880e-4a2f-a458-8458fc0aad04" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2017-18531@4d911f09-880e-4a2f-a458-8458fc0aad04" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2002-2036@4d911f09-880e-4a2f-a458-8458fc0aad04" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2021-34423@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2020-8140@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2021-23827@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2023-24068@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2021-34424@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2023-43799@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2023-1939@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2024-0589@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2023-5766@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2023-2282@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2023-4417@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2023-5765@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2004-2527@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2023-1574@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2016-0190@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2022-4287@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="CVE-2024-0985@773b7113-fc91-40aa-bbcf-5434e29664b6" target="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" />
+    <edge source="ROOT@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2024-27247@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="ROOT@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2024-37885@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="ROOT@773b7113-fc91-40aa-bbcf-5434e29664b6" target="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" />
+    <edge source="CVE-2016-1255@773b7113-fc91-40aa-bbcf-5434e29664b6" target="ROOT@773b7113-fc91-40aa-bbcf-5434e29664b6" />
+    <edge source="CVE-2024-4317@773b7113-fc91-40aa-bbcf-5434e29664b6" target="NONE@773b7113-fc91-40aa-bbcf-5434e29664b6" />
+    <edge source="ROOT@7b9cc9ef-f34d-4fcf-80cb-e716375e96e1" target="NONE@7b9cc9ef-f34d-4fcf-80cb-e716375e96e1" />
+    <edge source="CVE-2020-15486@7b9cc9ef-f34d-4fcf-80cb-e716375e96e1" target="ROOT@7b9cc9ef-f34d-4fcf-80cb-e716375e96e1" />
+    <edge source="CVE-2024-32368@7b9cc9ef-f34d-4fcf-80cb-e716375e96e1" target="NONE@7b9cc9ef-f34d-4fcf-80cb-e716375e96e1" />
+    <edge source="ROOT@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2024-27247@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="ROOT@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2024-37885@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="ROOT@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" />
+    <edge source="CVE-2021-46398@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="ROOT@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2020-15486@7b9cc9ef-f34d-4fcf-80cb-e716375e96e1" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2024-32368@7b9cc9ef-f34d-4fcf-80cb-e716375e96e1" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2017-9288@4d911f09-880e-4a2f-a458-8458fc0aad04" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2017-18531@4d911f09-880e-4a2f-a458-8458fc0aad04" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2002-2036@4d911f09-880e-4a2f-a458-8458fc0aad04" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2021-34423@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2020-8140@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2021-23827@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2023-24068@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2021-34424@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2023-43799@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2023-1939@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2024-0589@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2023-5766@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2023-2282@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2023-4417@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2023-5765@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2004-2527@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2023-1574@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2016-0190@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="NONE@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2022-4287@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="NONE@4d911f09-880e-4a2f-a458-8458fc0aad04" target="CVE-2024-0985@773b7113-fc91-40aa-bbcf-5434e29664b6" />
+    <edge source="NONE@4d911f09-880e-4a2f-a458-8458fc0aad04" target="CVE-2016-1255@773b7113-fc91-40aa-bbcf-5434e29664b6" />
+    <edge source="NONE@4d911f09-880e-4a2f-a458-8458fc0aad04" target="CVE-2024-4317@773b7113-fc91-40aa-bbcf-5434e29664b6" />
+    <edge source="NONE@4d911f09-880e-4a2f-a458-8458fc0aad04" target="CVE-2021-46398@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" />
+    <edge source="ROOT@4d911f09-880e-4a2f-a458-8458fc0aad04" target="NONE@4d911f09-880e-4a2f-a458-8458fc0aad04" />
+    <edge source="ROOT@4d911f09-880e-4a2f-a458-8458fc0aad04" target="USER@4d911f09-880e-4a2f-a458-8458fc0aad04" />
+    <edge source="CVE-2017-9288@4d911f09-880e-4a2f-a458-8458fc0aad04" target="ROOT@4d911f09-880e-4a2f-a458-8458fc0aad04" />
+    <edge source="CVE-2017-18531@4d911f09-880e-4a2f-a458-8458fc0aad04" target="ROOT@4d911f09-880e-4a2f-a458-8458fc0aad04" />
+    <edge source="USER@4d911f09-880e-4a2f-a458-8458fc0aad04" target="NONE@4d911f09-880e-4a2f-a458-8458fc0aad04" />
+    <edge source="CVE-2002-2036@4d911f09-880e-4a2f-a458-8458fc0aad04" target="USER@4d911f09-880e-4a2f-a458-8458fc0aad04" />
+    <edge source="NONE@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" target="CVE-2024-0985@773b7113-fc91-40aa-bbcf-5434e29664b6" />
+    <edge source="NONE@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" target="CVE-2016-1255@773b7113-fc91-40aa-bbcf-5434e29664b6" />
+    <edge source="NONE@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" target="CVE-2024-4317@773b7113-fc91-40aa-bbcf-5434e29664b6" />
+    <edge source="NONE@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" target="CVE-2021-46398@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" />
+    <edge source="ROOT@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" target="NONE@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="CVE-2021-34423@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" target="ROOT@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="CVE-2020-8140@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" target="ROOT@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="CVE-2021-23827@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" target="ROOT@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="CVE-2023-24068@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" target="NONE@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="CVE-2021-34424@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" target="ROOT@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="CVE-2024-27247@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" target="ROOT@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="CVE-2024-37885@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" target="ROOT@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="CVE-2023-43799@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" target="NONE@8f347a1c-08eb-46dc-aaa8-aff5a2461f61" />
+    <edge source="NONE@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" target="CVE-2024-0985@773b7113-fc91-40aa-bbcf-5434e29664b6" />
+    <edge source="NONE@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" target="CVE-2016-1255@773b7113-fc91-40aa-bbcf-5434e29664b6" />
+    <edge source="NONE@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" target="CVE-2024-4317@773b7113-fc91-40aa-bbcf-5434e29664b6" />
+    <edge source="NONE@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" target="CVE-2021-46398@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" />
+    <edge source="guest@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2024-2403@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="guest@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2024-3545@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="guest@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2024-6492@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="guest@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2024-6354@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="guest@773b7113-fc91-40aa-bbcf-5434e29664b6" target="CVE-2024-6055@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="CVE-2024-2403@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" target="guest@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="CVE-2023-1939@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" target="NONE@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="ROOT@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" target="NONE@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="CVE-2024-0589@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" target="ROOT@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="CVE-2024-3545@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" target="guest@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="CVE-2023-5766@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" target="NONE@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="CVE-2023-2282@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" target="NONE@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="CVE-2023-4417@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" target="NONE@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="CVE-2024-6492@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" target="guest@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="CVE-2023-5765@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" target="NONE@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="CVE-2024-6354@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" target="guest@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="CVE-2004-2527@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" target="ROOT@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="CVE-2023-1574@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" target="NONE@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="CVE-2016-0190@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" target="ROOT@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="CVE-2022-4287@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" target="NONE@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="CVE-2024-6055@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" target="guest@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="guest@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2024-2403@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="guest@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2024-3545@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="guest@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2024-6492@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="guest@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2024-6354@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+    <edge source="guest@968d99bc-23a0-4ac7-ba6e-4bc94af8c26d" target="CVE-2024-6055@4ac33f98-c1b5-42c0-912b-6cf51f1f19aa" />
+  </graph>
+</graphml>
