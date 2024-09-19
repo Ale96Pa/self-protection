@@ -44,22 +44,24 @@ def strategy_host(devices,vulnerabilities,edges,dev_removed):
     # return analyze_paths(paths, ["2-"+dev_removed])
     return analyze_network(paths, ["2#"+dev_removed])
 
-def run_ag_simulator():
-# if __name__ == "__main__":
-    file_network = "data/healthcare_network.json"
+# def run_ag_simulator():
+if __name__ == "__main__":
+    file_network = "data/real_network.json"
     with open(file_network) as nf:
         content = json.load(nf)
     devices=content["devices"]
     vulnerabilities=content["vulnerabilities"]
     edges=content["edges"]
-    mitigations=content["mitigations"]
+    # mitigations=content["mitigations"]
 
     metrics_nostrategy=no_strategy(devices,vulnerabilities,edges)
+    print("Simulation no strategy protection")
 
     metrics_host=[]
     for d in devices:
         devices_h = [dev for dev in devices if dev['id'] != d["id"]]
         metrics_host+=strategy_host(devices_h,vulnerabilities,edges,d["id"])
+        print("Simulation strategy protection for host ", d["id"])
 
     metrics_vuln=[]
     for d in devices:
@@ -68,10 +70,11 @@ def run_ag_simulator():
             if v['id'] in dev_vuln:
                 metrics_vuln+=strategy_vulnerability(devices,vulnerabilities,edges,d["id"],v["id"])
                 # print(d["id"],v["id"])
+        print("Simulation patching vulnerability in host ", d["id"])
              
 
     metrics=metrics_nostrategy+metrics_host+metrics_vuln
-    with open('data/metrics.csv', 'w', encoding='utf8', newline='') as output_file:
+    with open('data/security-metrics.csv', 'w', encoding='utf8', newline='') as output_file:
         fc = csv.DictWriter(output_file, fieldnames=metrics[0].keys())
         fc.writeheader()
         fc.writerows(metrics)

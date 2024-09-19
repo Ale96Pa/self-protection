@@ -21,15 +21,16 @@ def get_vulns_by_hostid(devid,devices):
     cve_list=[]
     for host in devices:
         if host["id"] == devid:
-            for iface in host["network_interfaces"]:
-                if "ports" in iface.keys():
-                    for port in iface["ports"]:
-                        for service in port["services"]:
-                            cve_list.append(service["cve_list"])
-                if "applications" in iface.keys():
-                    for app in iface["applications"]:
-                        cve_list.append(app["cve_list"])
-            return list(set([item for sublist in cve_list for item in sublist]))
+            return host["cveList"]
+            # for iface in host["network_interfaces"]:
+            #     if "ports" in iface.keys():
+            #         for port in iface["ports"]:
+            #             for service in port["services"]:
+            #                 cve_list.append(service["cve_list"])
+            #     if "applications" in iface.keys():
+            #         for app in iface["applications"]:
+            #             cve_list.append(app["cve_list"])
+            # return list(set([item for sublist in cve_list for item in sublist]))
     return []
 
 """
@@ -70,7 +71,7 @@ def retrieve_privileges(vulnID,vulnerabilities):
                 priv_gained = get_gain_privilege(metricCvssV3["scope"],metricCvssV3["scope"],metricCvssV3["privilegesRequired"])
                 return vuln,priv_required,priv_gained
             else:
-                return vuln,"guest","guest"
+                return vuln,"NONE","NONE"
 
 def generate_ag_model(devices,vulnerabilities,reachability_edges,ignore_vulns=[],on_dev=[]):
     G = nx.DiGraph()
@@ -149,7 +150,9 @@ def generate_paths(vulnerabilities, G, target_ids, src_ids=None):
     list_risk_values=[]
     for s in sources:
         for t in goals:
-            current_paths = list(nx.all_simple_paths(G, source=s, target=t))
+            # current_paths = list(nx.all_simple_paths(G, source=s, target=t, cutoff=7))
+            if not nx.has_path(G,s,t): continue
+            current_paths = list(nx.all_shortest_paths(G, source=s, target=t))
             for single_path in current_paths:
                 vulns_path=[]
                 path_trace=''

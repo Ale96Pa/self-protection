@@ -42,6 +42,7 @@
             "processingRate": 1000,
             "processingDistribution": "exponential",
             "subscribesTo": [
+                "topic_topic1",
                 "topic_topic2"
             ]
         },
@@ -63,7 +64,9 @@
             "priority": 0,
             "processingRate": 1000,
             "processingDistribution": "exponential",
-            "subscribesTo": []
+            "subscribesTo": [
+                "topic_topic1"
+            ]
         },
         {
             "applicationName": "app_app4",
@@ -104,7 +107,10 @@
             "publishers": [
                 "topic1_source"
             ],
-            "subscribers": []
+            "subscribers": [
+                "app_app1",
+                "app_app3"
+            ]
         },
         {
             "topicId": "topic_topic2",
