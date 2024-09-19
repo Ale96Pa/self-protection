@@ -37,6 +37,10 @@
         "CVE-2024-27167",
         "CVE-2024-27169",
         "CVE-2024-27170"
+      ],
+      "applications": [
+        "app_app12",
+        "app_app11"
       ]
     },
     {
@@ -49,7 +53,11 @@
         "topic_energymanagement"
       ],
       "id": "energymanagement_source",
-      "cveList": []
+      "cveList": [],
+      "applications": [
+        "app_app2",
+        "app_app1"
+      ]
     },
     {
       "deviceId": "occupancymanagement_source",
@@ -76,6 +84,10 @@
         "CVE-2024-33470",
         "CVE-2024-33471",
         "CVE-2024-33471"
+      ],
+      "applications": [
+        "app_app12",
+        "app_app11"
       ]
     },
     {
@@ -99,6 +111,10 @@
         "CVE-2024-39351",
         "CVE-2024-39352",
         "CVE-2024-39350"
+      ],
+      "applications": [
+        "app_app38",
+        "app_app36"
       ]
     },
     {
@@ -182,6 +198,11 @@
         "CVE-2015-6427",
         "CVE-2016-1463",
         "CVE-2016-1463"
+      ],
+      "applications": [
+        "app_app22",
+        "app_app21",
+        "app_app23"
       ]
     },
     {
@@ -323,6 +344,11 @@
         "CVE-2023-20267",
         "CVE-2024-20363",
         "CVE-2024-20363"
+      ],
+      "applications": [
+        "app_app22",
+        "app_app21",
+        "app_app23"
       ]
     },
     {
@@ -344,6 +370,10 @@
         "CVE-2021-37436",
         "CVE-2022-25809",
         "CVE-2022-25809"
+      ],
+      "applications": [
+        "app_app2",
+        "app_app1"
       ]
     },
     {
@@ -469,6 +499,10 @@
         "CVE-2024-34596",
         "CVE-2024-34606",
         "CVE-2024-34606"
+      ],
+      "applications": [
+        "app_app2",
+        "app_app1"
       ]
     },
     {
@@ -490,6 +524,10 @@
         "CVE-2021-37292",
         "CVE-2021-37293",
         "CVE-2021-37293"
+      ],
+      "applications": [
+        "app_app12",
+        "app_app11"
       ]
     }
   ],

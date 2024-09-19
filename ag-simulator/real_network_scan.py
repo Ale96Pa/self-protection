@@ -70,8 +70,12 @@ def generate_vuln_files():
     return
 
 def generate_dev_list(iot_traces, vuln_file):
-    with open(iot_traces) as f: iot_devices = json.load(f)["IoTdevices"]
+    with open(iot_traces) as f: content = json.load(f)
     with open(vuln_file) as g: vulnerabilities = json.load(g)["vulnerabilities"]
+
+    iot_devices=content["IoTdevices"]
+    applications=content["applications"]
+    topics=content["topics"]
 
     devices=[]
     for dev in iot_devices:
@@ -79,12 +83,19 @@ def generate_dev_list(iot_traces, vuln_file):
         dev_cpy=dev
         dev_cpy["id"]=devid
         dev_cpy["cveList"]=[]
+        dev_cpy["applications"]=[]
 
         cve_k=DEVICES_CVE[devid]
         for vuln in vulnerabilities:
             for vuln_descr in vuln["descriptions"]:
                 if cve_k in vuln_descr["value"].lower():
                     dev_cpy["cveList"].append(vuln["id"])
+        
+        for app in applications:
+            category = app["applicationCategory"]
+            if category == DEVICES_APP[devid]:
+                dev_cpy["applications"].append(app["applicationId"])
+
         devices.append(dev_cpy)
     return devices
 
