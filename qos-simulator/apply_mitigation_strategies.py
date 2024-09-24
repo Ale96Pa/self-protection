@@ -77,6 +77,7 @@ if __name__ == '__main__':
     input_file = sys.argv[1]
     strategyId = float(sys.argv[2])
     parameters = sys.argv[3:]
+    parameters = ' '.join(parameters)
 
     with open(input_file) as json_data:
         data = json.load(json_data)
