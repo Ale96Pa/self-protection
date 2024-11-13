@@ -15,9 +15,9 @@ shift 4
 mitigation_args=$@
 
 if [[ -z $mitigation_args ]]; then
-	# echo "WARNING: No mitigation strategy is specified! Running normal simulation."
-	# java -jar edict.jar $inputFile $outputFile $simulationDuration $alias
-	# rm ./scenarios/jsimg/*.jsimg
+	echo "WARNING: No mitigation strategy is specified! Running normal simulation."
+	java -jar edict.jar $inputFile $outputFile $simulationDuration $alias
+	rm ./scenarios/jsimg/*.jsimg
 	exit 0
 fi
 
