@@ -1,6 +1,6 @@
 import json
 # from attack_graph import generate_ag_model, generate_paths, analyze_paths
-from ag_simulator import run_ag_simulator
+# from ag_simulator import run_ag_simulator
 
 if __name__ == "__main__":
 

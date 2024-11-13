@@ -24,7 +24,8 @@ def strategy_vulnerability(devices,vulnerabilities,edges,dev_patch,vuln_patch):
 
     qos_strategies=[]
     for descr in vuln_patch["descriptions"]:
-        if "size" in descr["value"]:
+        # if "size" in descr["value"]:
+        if "size" in descr[0]:
             qos_strategies.append("14 <"+dev_patch["id"]+", "+str(dev_patch["messageSize"]/2)+">")
             continue
     for app in dev_patch["applications"]:
@@ -56,7 +57,8 @@ def strategy_host(devices,vulnerabilities,edges,dev_removed):
 
 # def run_ag_simulator():
 if __name__ == "__main__":
-    file_network = "data/real_network.json"
+    # file_network = "data/real_network.json"
+    file_network = "data/hc_network_format.json"
     with open(file_network) as nf:
         content = json.load(nf)
     devices=content["devices"]
@@ -67,27 +69,40 @@ if __name__ == "__main__":
     metrics_nostrategy=no_strategy(devices,vulnerabilities,edges)
     print("Simulation no strategy protection")
 
+    metrics=metrics_nostrategy
+    with open('data/security-metrics.csv', 'w', encoding='utf8', newline='') as output_file:
+        fc = csv.DictWriter(output_file, fieldnames=metrics[0].keys())
+        fc.writeheader()
+        fc.writerows(metrics)
+
     metrics_host=[]
     for d in devices:
         devices_h = [dev for dev in devices if dev['id'] != d["id"]]
         metrics_host+=strategy_host(devices_h,vulnerabilities,edges,d)
         print("Simulation strategy protection for host ", d["id"])
-
-    metrics_vuln=[]
-    for d in devices:
-        for v in vulnerabilities:
-            dev_vuln=get_vulns_by_hostid(d['id'],devices)
-            if v['id'] in dev_vuln:
-                metrics_vuln+=strategy_vulnerability(devices,vulnerabilities,edges,d,v)
-                # print(d["id"],v["id"])
-        print("Simulation patching vulnerability in host ", d["id"])
-             
-
-    metrics=metrics_nostrategy+metrics_host+metrics_vuln
+    
+    metrics=metrics_nostrategy+metrics_host
     with open('data/security-metrics.csv', 'w', encoding='utf8', newline='') as output_file:
         fc = csv.DictWriter(output_file, fieldnames=metrics[0].keys())
         fc.writeheader()
         fc.writerows(metrics)
+
+    # metrics_vuln=[]
+    # for d in devices:
+    #     for v in vulnerabilities:
+    #         dev_vuln=get_vulns_by_hostid(d['id'],devices)
+    #         if v['id'] in dev_vuln[:100]:
+    #             metrics_vuln+=strategy_vulnerability(devices,vulnerabilities,edges,d,v)
+    #             # print(d["id"],v["id"])
+    #         print("Simulation patching vulnerability ", v['id'], " in host ", d["id"])
+    #     print("Simulation patching vulnerability in host ", d["id"])
+             
+
+    # metrics=metrics_vuln#metrics_nostrategy+metrics_host+metrics_vuln
+    # with open('data/security-metrics.csv', 'w', encoding='utf8', newline='') as output_file:
+    #     fc = csv.DictWriter(output_file, fieldnames=metrics[0].keys())
+    #     fc.writeheader()
+    #     fc.writerows(metrics)
 
 
     

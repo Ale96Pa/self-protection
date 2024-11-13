@@ -10,7 +10,7 @@ def get_risk_by_vuln(vuln):
         likelihood=metricV2["exploitabilityScore"]
         impact=metricV2["impactScore"]
     
-    if "cvssMetricV30" in vuln["metrics"] or "cvssMetricV31" in vuln["metrics"]:
+    if ("cvssMetricV30" in vuln["metrics"] and vuln["metrics"]["cvssMetricV30"]) or ("cvssMetricV31" in vuln["metrics"] and vuln["metrics"]["cvssMetricV31"]):
         if "cvssMetricV30" in vuln["metrics"]: metricV3 = vuln["metrics"]["cvssMetricV30"][0]
         else: metricV3 = vuln["metrics"]["cvssMetricV31"][0]
         likelihood=metricV3["exploitabilityScore"]
@@ -153,7 +153,7 @@ def generate_paths(vulnerabilities, G, target_ids, src_ids=None):
             # current_paths = list(nx.all_simple_paths(G, source=s, target=t, cutoff=7))
             if not nx.has_path(G,s,t): continue
             current_paths = list(nx.all_shortest_paths(G, source=s, target=t))
-            for single_path in current_paths:
+            for single_path in current_paths[:1000]: #TODO
                 vulns_path=[]
                 path_trace=''
                 for node_p in single_path:
