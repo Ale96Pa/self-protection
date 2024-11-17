@@ -1,1 +1,49 @@
-{"409fad40b1d62eb940fdde6354a74f3e8d454d09": ["Separation of Privilege", "Attack Surface Reduction", "Environment Hardening", "Input Validation", "Language Selection", "Libraries or Frameworks"], "9a1c0c332d096dda37d9c78df9082cd782e2c043": ["Separation of Privilege", "Libraries or Frameworks", "Language Selection", "Compilation or Build Hardening", "Environment Hardening", "Input Validation", "Enforcement by Conversion", "Sandbox or Jail"], "cc406827f27a6e34d2407e7795c952a3ef205827": ["Separation of Privilege", "Libraries or Frameworks", "Language Selection", "Compilation or Build Hardening", "Environment Hardening", "Input Validation", "Enforcement by Conversion", "Sandbox or Jail"], "54d47d36c3b4ee51b0dbf2c15f42f148098292fa": ["Separation of Privilege", "Libraries or Frameworks", "Language Selection", "Compilation or Build Hardening", "Environment Hardening", "Input Validation", "Enforcement by Conversion", "Sandbox or Jail"], "ac1faedbfec77623b9a384b2f01ee6ffd3320f85": ["Separation of Privilege"], "3e78d89b752d59d26696f0cff1c8474be63d2414": ["Separation of Privilege"], "acca830ab5b2bf04e78ad11ed71a03e7ce3dbbbd": ["Separation of Privilege"], "5dbf2ca6d553a063e96da3695d4611563d62737d": ["Separation of Privilege", "Input Validation", "Libraries or Frameworks", "Attack Surface Reduction"], "718d0e361c36b3da6577d2b718a7d2cce626c57b": ["Separation of Privilege", "Input Validation", "Language Selection", "Libraries or Frameworks", "Compilation or Build Hardening", "Environment Hardening"], "30d2ba7d25a7a0f5b9e3b3bf1c76926b31193c1a": [], "eaf7803fe8421370005d6873a34100b474380d38": ["Separation of Privilege", "Libraries or Frameworks", "Language Selection", "Compilation or Build Hardening", "Environment Hardening", "Input Validation", "Enforcement by Conversion", "Sandbox or Jail"], "63841b50abde7be7f36b38e66695e322dcbc90c9": ["Separation of Privilege", "Libraries or Frameworks", "Language Selection", "Compilation or Build Hardening", "Environment Hardening", "Input Validation", "Enforcement by Conversion", "Sandbox or Jail"], "12b5d1af19957351a3a7da2294735440bfc34828": ["Separation of Privilege", "Libraries or Frameworks", "Language Selection", "Compilation or Build Hardening", "Environment Hardening", "Input Validation", "Enforcement by Conversion", "Sandbox or Jail"]}
+{
+    "printing_source": [],
+    "energymanagement_source": [],
+    "occupancymanagement_source": [
+        "Input Validation",
+        "Libraries or Frameworks",
+        "Enforcement by Conversion",
+        "Firewall",
+        "Environment Hardening",
+        "Sandbox or Jail",
+        "Attack Surface Reduction",
+        "Language Selection",
+        "Compilation or Build Hardening"
+    ],
+    "videosurveillance_source": [],
+    "firedetection_source": [
+        "Libraries or Frameworks",
+        "Separation of Privilege",
+        "Input Validation",
+        "Attack Surface Reduction"
+    ],
+    "intrusiondetection_source": [],
+    "amazonecho_source": [
+        "Input Validation",
+        "Output Encoding",
+        "Libraries or Frameworks",
+        "Parameterization",
+        "Enforcement by Conversion",
+        "Attack Surface Reduction",
+        "Compilation or Build Hardening",
+        "Environment Hardening",
+        "Sandbox or Jail",
+        "Firewall"
+    ],
+    "smartthings_source": [
+        "Separation of Privilege"
+    ],
+    "bms_source": [
+        "Input Validation",
+        "Libraries or Frameworks",
+        "Enforcement by Conversion",
+        "Firewall",
+        "Environment Hardening",
+        "Sandbox or Jail",
+        "Attack Surface Reduction",
+        "Output Encoding",
+        "Parameterization"
+    ]
+}
