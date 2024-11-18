@@ -4,7 +4,8 @@ from cwe2.database import Database
 
 # associate strategies to each device
 MITIGATION_FILE='../_NIST/cwe_mitigation.csv'
-NETWORK_FILE='data/real_network.json'
+# NETWORK_FILE='data/real_network.json'
+NETWORK_FILE='data/hc_network_format.json'
 
 MAPPING ={
     "Libraries or Frameworks":1,
@@ -55,7 +56,8 @@ def getCweMitigation(cveid, vulnerabilities):
         if vuln["id"]==cveid:
             if "cwe" in vuln.keys():
                 for cwe in vuln["cwe"]:
-                    cwe_id = cwe["value"].replace("CWE-","")
+                    # cwe_id = cwe["value"].replace("CWE-","")
+                    cwe_id = cwe["cweId"].replace("CWE-","")
                     if cwe_id not in cwe_list: 
                         cwe_list.append(cwe_id)
                 
@@ -100,7 +102,8 @@ def getStrategyDevice(file_network):
     
     # with open("experiments/strategy_device.json", "w") as outfile: 
     #     json.dump(strategies_GT, outfile)
-    with open("experiments/strategy_device_id.json", "w") as outfile: 
+    # with open("experiments/strategy_device_id.json", "w") as outfile: 
+    with open("experiments/strategy_device_id_hc.json", "w") as outfile: 
         json.dump(strategies_GT_index, outfile)
     return strategies_GT
 
@@ -167,9 +170,9 @@ def compare_strategies(gt_file, predict_file, device_file):
         
 
 if __name__=="__main__":
-    # strategy_per_device = getStrategyDevice(NETWORK_FILE)
-    # print(strategy_per_device)
+    strategy_per_device = getStrategyDevice(NETWORK_FILE)
+    print(strategy_per_device)
     # getPlanStrategy("planning/planning-files")
-    compare_strategies("experiments/strategy_device_id.json", 
-                       "experiments/strategy_computed.json",
-                       "data/real_network.json")
+    # compare_strategies("experiments/strategy_device_id.json", 
+    #                    "experiments/strategy_computed.json",
+    #                    "data/real_network.json")
