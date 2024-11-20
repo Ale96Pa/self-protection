@@ -1,9 +1,10 @@
 import json, os
-import pandas as pd
+import numpy as np
 from cwe2.database import Database
+from matplotlib import pyplot as plt
 
 # associate strategies to each device
-MITIGATION_FILE='../_NIST/cwe_mitigation.csv'
+# MITIGATION_FILE='../_NIST/cwe_mitigation.csv'
 # NETWORK_FILE='data/real_network.json'
 NETWORK_FILE='data/hc_network_format.json'
 
@@ -81,7 +82,7 @@ def getCweMitigation(cveid, vulnerabilities):
     return result
         
 
-def getStrategyDevice(file_network):
+def getStrategyDevice(file_network, net_tag):
     with open(file_network) as f:
         content = json.load(f)
     devices = content["devices"]
@@ -107,7 +108,7 @@ def getStrategyDevice(file_network):
         json.dump(strategies_GT_index, outfile)
     return strategies_GT
 
-def getPlanStrategy(folder_planningfiles):
+def getPlanStrategy(folder_planningfiles, net_tag):
     strategies_computed = {}
     for file in os.listdir(folder_planningfiles):
         if "plan_problem" in file:
@@ -126,7 +127,7 @@ def getPlanStrategy(folder_planningfiles):
     with open("experiments/strategy_computed.json", "w") as outfile: 
         json.dump(strategies_computed, outfile)
 
-def compare_strategies(gt_file, predict_file, device_file):
+def compare_strategies(gt_file, predict_file, device_file, net_tag):
     with open(device_file) as dv: devices = json.load(dv)["devices"]
     with open(gt_file) as gt: planGT = json.load(gt)
     with open(predict_file) as pp: planPredict = json.load(pp)
@@ -162,17 +163,47 @@ def compare_strategies(gt_file, predict_file, device_file):
         elif category_predicted=="" and len(categories_gt)>=1: FN+=1
         elif category_predicted!="" and category_predicted in categories_gt: TP+=1
         elif category_predicted!="" and category_predicted not in categories_gt: FP+=1
-    print(TP,TN,FN,FP)
-    print((TP+TN)/(TP+TN+FN+FP))
-                                    
+    return TP,TN,FN,FP                                    
                             
-        
+def plot_confusion_matrix(TP,TN,FN,FP, net_tag):
+    TOT=TP+FN+FP+TN
+    print("Accuracy: ", (TP+TN)/TOT)
+
+    confusion_m = np.matrix([[TP, FP], [FN, TN]])
+    annot_text = np.matrix([["TP\n"+str(round(TP/TOT*100,2))+"%", "FP\n"+str(round(FP/TOT*100,2))+"%"], ["FN\n"+str(round(FN/TOT*100,2))+"%", "TN\n"+str(round(TN/TOT*100,2))+"%"]])
+
+    fig = plt.figure(figsize=(8, 4))
+    ax = plt.subplot(1, 2, 2)
+    plt.imshow(confusion_m, interpolation='nearest', cmap=plt.cm.Blues)
+
+    rows, cols = confusion_m.shape
+    for i in range(rows):
+        for j in range(cols):
+            if i==0 and j==0:
+                plt.text(j, i, annot_text[i, j], horizontalalignment='center', verticalalignment='center', color='white', fontsize=14)
+            else:
+                plt.text(j, i, annot_text[i, j], horizontalalignment='center', verticalalignment='center', color='black', fontsize=14)
+    # min_val = min([TP,TN,FP,FN])
+    # max_val = max([TP,TN,FP,FN])
+    # sns.heatmap(confusion_m, vmin=min_val,vmax=max_val,linewidth=0.5,annot=annot_text,fmt="s",yticklabels=False,xticklabels=False,ax=axs,cmap="Blues")
+
+    precision=round(TP/(TP+FP),2)
+    recall=round(TP/(TP+FN),2)
+    F1Score=round(2*(precision*recall)/(precision+recall),2)
+    plt.title(f'Precision: {precision}, Recall: {recall}, F1: {F1Score}')
+    plt.xticks([])
+    plt.yticks([])
+    plt.savefig("experiments/plot/confusion_m.png", bbox_inches='tight')
+    plt.close(fig)        
         
 
 if __name__=="__main__":
-    strategy_per_device = getStrategyDevice(NETWORK_FILE)
-    print(strategy_per_device)
-    # getPlanStrategy("planning/planning-files")
-    # compare_strategies("experiments/strategy_device_id.json", 
-    #                    "experiments/strategy_computed.json",
-    #                    "data/real_network.json")
+    #TODO ADJUST FUNCTION FOR NET TAG
+    for net_tag in ["HC","SH"]:
+        # strategy_per_device = getStrategyDevice(NETWORK_FILE,net_tag)
+        # print(strategy_per_device)
+        # getPlanStrategy("planning/planning-files",net_tag)
+        TP,TN,FN,FP = compare_strategies("experiments/strategy_device_id.json", 
+                        "experiments/strategy_computed.json",
+                        "data/real_network.json",net_tag)
+        plot_confusion_matrix(TP,TN,FN,FP,net_tag)
