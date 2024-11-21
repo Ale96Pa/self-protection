@@ -3,10 +3,8 @@ import numpy as np
 from cwe2.database import Database
 from matplotlib import pyplot as plt
 
-# associate strategies to each device
+# Associate strategies to each device
 # MITIGATION_FILE='../_NIST/cwe_mitigation.csv'
-# NETWORK_FILE='data/real_network.json'
-NETWORK_FILE='data/hc_network_format.json'
 
 MAPPING ={
     "Libraries or Frameworks":1,
@@ -57,8 +55,8 @@ def getCweMitigation(cveid, vulnerabilities):
         if vuln["id"]==cveid:
             if "cwe" in vuln.keys():
                 for cwe in vuln["cwe"]:
-                    # cwe_id = cwe["value"].replace("CWE-","")
-                    cwe_id = cwe["cweId"].replace("CWE-","")
+                    if "value" in cwe.keys(): cwe_id = cwe["value"].replace("CWE-","")
+                    else: cwe_id = cwe["cweId"].replace("CWE-","")
                     if cwe_id not in cwe_list: 
                         cwe_list.append(cwe_id)
                 
@@ -104,7 +102,7 @@ def getStrategyDevice(file_network, net_tag):
     # with open("experiments/strategy_device.json", "w") as outfile: 
     #     json.dump(strategies_GT, outfile)
     # with open("experiments/strategy_device_id.json", "w") as outfile: 
-    with open("experiments/strategy_device_id_hc.json", "w") as outfile: 
+    with open("experiments/strategy_device_"+net_tag+".json", "w") as outfile: 
         json.dump(strategies_GT_index, outfile)
     return strategies_GT
 
@@ -124,10 +122,10 @@ def getPlanStrategy(folder_planningfiles, net_tag):
                             "strategy": strategy_id,
                             "cost": cost
                         }
-    with open("experiments/strategy_computed.json", "w") as outfile: 
+    with open("experiments/strategy_computed_"+net_tag+".json", "w") as outfile: 
         json.dump(strategies_computed, outfile)
 
-def compare_strategies(gt_file, predict_file, device_file, net_tag):
+def compare_strategies(gt_file, predict_file, device_file):
     with open(device_file) as dv: devices = json.load(dv)["devices"]
     with open(gt_file) as gt: planGT = json.load(gt)
     with open(predict_file) as pp: planPredict = json.load(pp)
@@ -193,17 +191,21 @@ def plot_confusion_matrix(TP,TN,FN,FP, net_tag):
     plt.title(f'Precision: {precision}, Recall: {recall}, F1: {F1Score}')
     plt.xticks([])
     plt.yticks([])
-    plt.savefig("experiments/plot/confusion_m.png", bbox_inches='tight')
+    plt.savefig("experiments/plot/conf_m_"+net_tag+".png", bbox_inches='tight')
     plt.close(fig)        
         
 
 if __name__=="__main__":
-    #TODO ADJUST FUNCTION FOR NET TAG
-    for net_tag in ["HC","SH"]:
-        # strategy_per_device = getStrategyDevice(NETWORK_FILE,net_tag)
-        # print(strategy_per_device)
-        # getPlanStrategy("planning/planning-files",net_tag)
-        TP,TN,FN,FP = compare_strategies("experiments/strategy_device_id.json", 
-                        "experiments/strategy_computed.json",
-                        "data/real_network.json",net_tag)
+    for network_file in ['data/real_network.json','data/hc_network_format.json']:
+        net_tag = ""
+        if "real" in network_file: net_tag="SH_net"
+        else: net_tag="HC_net"
+        
+        strategy_per_device = getStrategyDevice(network_file,net_tag)
+        print(strategy_per_device)
+        getPlanStrategy("planning/planning-files",net_tag) #TODO cartelle diverse in base a net_tag
+        TP,TN,FN,FP = compare_strategies("experiments/strategy_device_"+net_tag+".json", 
+                        "experiments/strategy_computed_"+net_tag+".json",
+                        network_file)
         plot_confusion_matrix(TP,TN,FN,FP,net_tag)
+            
