@@ -8,6 +8,6 @@
 ; Search time 0.01
 ; Parsing time 0.00
 ; Mutex time 0.00
-; MetricValue 5.19
+; MetricValue 5.17
 
-0:   (STRATEGY-2 APP_APP1) [1]
+0:   (STRATEGY-9 APP_APP1) [1]
