@@ -231,6 +231,7 @@ def analyze_network(attack_paths, strategies=[0]):
             "avg_imp": sum(impacts)/len(impacts),
             "avg_risk": sum(risks)/len(risks),
             "avg_len": sum(lengths)/len(lengths),
+            "num_paths": len(attack_paths)
         })
     
     return metrics
