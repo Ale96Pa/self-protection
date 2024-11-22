@@ -78,10 +78,11 @@ if __name__ == '__main__':
     strategyId = float(sys.argv[2])
     parameters = sys.argv[3:]
     parameters = ' '.join(parameters)
-
+    print("Input file: ", input_file)
     with open(input_file) as json_data:
         data = json.load(json_data)
     
+    updated_data = data
     if (strategyId == 2 or strategyId == 9 or strategyId == 22):
         topics_to_remove = parameters
         updated_data = remove_topic_subscription(data, topics_to_remove)
