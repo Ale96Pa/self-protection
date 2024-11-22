@@ -13,6 +13,20 @@ qos_file = 'qos-metrics.csv'
 strategies_dict = 'configurations-ids.csv'
 metrics_per_device_file = 'metrics-per-device/{}.csv'
 
+metrics_file = '../qos-simulator/security-metrics-healthcare.csv'
+mapping_file = '../qos-simulator/mapping.txt'
+output_file = '../qos-simulator/security-metrics-mapped.csv'
+
+
+mapping_dict = dict()
+
+df = pd.read_csv(mapping_file, header=None)
+for index, row in df.iterrows():
+    device = row[0].split(' ')[0]
+    id = row[0].split(' ')[1]
+    mapping_dict[id] = device
+    
+print(mapping_dict)
 df = pd.read_csv(sec_file)
 
 metrics_per_device = dict()
@@ -32,16 +46,20 @@ for index, row in mitigation_df.iterrows():
     config = row[1]
     mitigation_dict[config] = mitigationId
 
-
 for index, row in df.iterrows():
     strategyId = row[0].split(' ')[0]
     devices = row[0].split(' ')[1:]
+    
     avg_lik,avg_imp,avg_risk,avg_len = row[1], row[2], row[3], row[4]
     if '<' in devices[0]:
         devices = devices[0].split(';')[0]
         devices = devices.replace('<', '')
         devices = [devices]
+    
     list_of_devices = devices
+    
+    ## Here we are mapping devices to hosts (N1  ... N12). This may not always be needed
+    list_of_devices[0] = mapping_dict[list_of_devices[0]]
     mitigationId = mitigation_dict['{} {}'.format(strategyId, ' '.join(devices))]
     for device in list_of_devices:
         if device in metrics_per_device:

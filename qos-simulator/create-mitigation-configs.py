@@ -9,7 +9,7 @@ import pandas as pd
 
 
 security_metrics_file = 'security-metrics-mapped.csv'
-mitigation_configs_file = 'scenarios/mitigations-healthcare.csv'
+mitigation_configs_file = '../planning/configurations-ids_healthcare.csv'
 
 mitigation_configs_dict = dict()
 df = pd.read_csv(security_metrics_file)
