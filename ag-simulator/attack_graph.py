@@ -1,4 +1,3 @@
-import json, csv
 import networkx as nx
 
 def get_risk_by_vuln(vuln):
@@ -105,7 +104,7 @@ def generate_ag_model(devices,vulnerabilities,reachability_edges,ignore_vulns=[]
             if priv1 == "USER" and priv2 == "NONE": G.add_edge(node_1, node_2)
             if priv1 == "ROOT" and priv2 == "NONE": G.add_edge(node_1, node_2)
 
-    nx.write_graphml_lxml(G, "data/agtest.graphml")
+    # nx.write_graphml_lxml(G, "data/agtest.graphml")
     return G
 
 def compute_risk_analysis(vuln_ids, vulns_list):
@@ -148,10 +147,12 @@ def generate_paths(vulnerabilities, G, target_ids, src_ids=None):
             if src_ids and hostid in src_ids: sources.append(n)
     
     list_risk_values=[]
-    for s in sources:
-        for t in goals:
-            # current_paths = list(nx.all_simple_paths(G, source=s, target=t, cutoff=7))
+    dict_risk_per_device={}
+    for t in goals:
+        list_risk_dev=[]
+        for s in sources:
             if not nx.has_path(G,s,t): continue
+            # current_paths = list(nx.all_simple_paths(G, source=s, target=t, cutoff=7))
             current_paths = list(nx.all_shortest_paths(G, source=s, target=t))
             for single_path in current_paths[:1000]: #TODO
                 vulns_path=[]
@@ -164,9 +165,13 @@ def generate_paths(vulnerabilities, G, target_ids, src_ids=None):
                 risk_val = compute_risk_analysis(vulns_path, vulnerabilities)
                 risk_val['path']=path_trace
                 list_risk_values.append(risk_val)
-            if len(list_risk_values)<=0: continue
+                list_risk_dev.append(risk_val)
+            # if len(list_risk_values)<=0: continue
             
-    return list_risk_values
+            dev = t.split("@")[1]
+            dict_risk_per_device[dev] = list_risk_dev
+            
+    return dict_risk_per_device
 
 def analyze_paths(attack_paths, strategies=[0]):
     clients={}
@@ -211,27 +216,56 @@ def analyze_paths(attack_paths, strategies=[0]):
     return metrics
 
 
-def analyze_network(attack_paths, strategies=[0]):
-    
-    likelihoods=[]
-    impacts=[]
-    risks=[]
-    lengths=[]
-    for path in attack_paths:
-       likelihoods.append(path['likelihood'])
-       impacts.append(path['impact'])
-       risks.append(path['risk'])
-       lengths.append(path['path'].count('CVE'))
-    
+def analyze_network(pathsPerDev, strategies, isZero=False):
+        
     metrics=[]
-    for strategy in strategies:
-        metrics.append({
-            'strategy':strategy,
-            "avg_lik": sum(likelihoods)/len(likelihoods),
-            "avg_imp": sum(impacts)/len(impacts),
-            "avg_risk": sum(risks)/len(risks),
-            "avg_len": sum(lengths)/len(lengths),
-            "num_paths": len(attack_paths)
-        })
-    
+    if isZero:
+        likelihoods=[0]
+        impacts=[0]
+        risks=[0]
+        lengths=[0]
+        path_len=0
+        for strategy in strategies:
+            dev = strategy.split(" ")[1]
+            if dev in pathsPerDev.keys():
+                for path in pathsPerDev[dev]:
+                    path_len = len(pathsPerDev[dev])
+                    likelihoods.append(path['likelihood'])
+                    impacts.append(path['impact'])
+                    risks.append(path['risk'])
+                    lengths.append(path['path'].count('CVE'))
+        
+            metrics.append({
+                'strategy':strategy,
+                "avg_lik": sum(likelihoods)/len(likelihoods),
+                "avg_imp": sum(impacts)/len(impacts),
+                "avg_risk": sum(risks)/len(risks),
+                "avg_len": sum(lengths)/len(lengths),
+                "num_paths": path_len,
+                "dst": dev
+            })
+    else:
+        for strategy in strategies:
+            likelihoods=[0]
+            impacts=[0]
+            risks=[0]
+            lengths=[0]
+            path_len=0
+            for dev in pathsPerDev.keys():
+                path_len = len(pathsPerDev[dev])
+                for path in pathsPerDev[dev]:
+                    likelihoods.append(path['likelihood'])
+                    impacts.append(path['impact'])
+                    risks.append(path['risk'])
+                    lengths.append(path['path'].count('CVE'))
+            
+                metrics.append({
+                    'strategy':strategy,
+                    "avg_lik": sum(likelihoods)/len(likelihoods),
+                    "avg_imp": sum(impacts)/len(impacts),
+                    "avg_risk": sum(risks)/len(risks),
+                    "avg_len": sum(lengths)/len(lengths),
+                    "num_paths": path_len,
+                    "dst": dev
+                })    
     return metrics
