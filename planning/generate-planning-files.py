@@ -11,8 +11,8 @@ import pandas as pd
 domain_template = 'domain-template.pddl'
 problem_template = 'problem-template.pddl'
 
-domain_instance = 'domain-problem-files/domain-instance_{}.pddl'
-problem_instance = 'domain-problem-files/problem-instance_{}.pddl'
+domain_instance = 'planning-files/domain-instance_{}.pddl'
+problem_instance = 'planning-files/problem-instance_{}.pddl'
 
 action_template = '''\n(:action strategy-%strategyId%
 		:parameters (?d -device)
@@ -56,11 +56,14 @@ def create_action(strategyId, host, avg_lik, avg_imp, avg_risk, avg_len, avg_lat
     action_instance = action_instance.replace('%host%', host)
     return action_instance
          
-metrics_directory = 'strategies/'
+metrics_directory = 'metrics-per-device/'
 
 directory = os.fsencode(metrics_directory)
 
 for file in os.listdir(directory):
+    file_path = os.path.join(directory, file)  # Create full path
+    if os.path.isdir(file_path):  # Check if it is a directory
+        continue
     filename = os.fsdecode(file)
     hostname = filename.replace('.csv', '')
     actions_str = ''
