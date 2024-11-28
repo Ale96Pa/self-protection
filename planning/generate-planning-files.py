@@ -25,6 +25,7 @@ action_template = '''\n(:action strategy-%strategyId%
 		 	(increase (avg_imp) %avg_imp%)
 		 	(increase (avg_risk) %avg_risk%)
 		 	(increase (avg_len) %avg_len%)
+        (increase (num_paths) %num_paths%)
 		 	(increase (avg_latency) %avg_latency%)
 		 	(mitigation-applied %host%)
 		 )
@@ -46,12 +47,12 @@ def create_domain_file(host, actions_str):
             instance_file.write(new_data)
         
 
-def create_action(strategyId, host, avg_lik, avg_imp, avg_risk, avg_len, avg_latency):
+def create_action(strategyId, host, avg_lik, avg_imp, avg_risk, avg_len, num_paths, avg_latency):
     action_instance = action_template.replace('%strategyId%', strategyId)
     action_instance = action_instance.replace('%avg-lik%', avg_lik)
-    action_instance = action_instance.replace('%avg_imp%', avg_imp)
     action_instance = action_instance.replace('%avg_risk%', avg_risk)
     action_instance = action_instance.replace('%avg_len%', avg_len)
+    action_instance = action_instance.replace('%num_paths%', num_paths)
     action_instance = action_instance.replace('%avg_latency%', avg_latency)
     action_instance = action_instance.replace('%host%', host)
     return action_instance
@@ -74,8 +75,9 @@ for file in os.listdir(directory):
         avg_imp = str(row[2])
         avg_risk = str(row[3])
         avg_len = str(row[4])
-        avg_latency = str(row[5])
-        actions_str += create_action(strategyId, hostname, avg_lik, avg_imp, avg_risk, avg_len, avg_latency)
+        num_paths = str(row[5])
+        avg_latency = str(row[6])
+        actions_str += create_action(strategyId, hostname, avg_lik, avg_imp, avg_risk, avg_len, num_paths, avg_latency)
                 
         create_domain_file(hostname, actions_str)
         create_problem_file(hostname)

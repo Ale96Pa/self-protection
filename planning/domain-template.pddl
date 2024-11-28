@@ -16,6 +16,7 @@
 		(avg_imp)
 		(avg_risk)
 		(avg_len)
+		(num_paths)
 
 		; qos metrics
 		(avg_latency)
