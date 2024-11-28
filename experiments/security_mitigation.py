@@ -1,7 +1,10 @@
-import json, os
+import json, os, sys
 import numpy as np
 from cwe2.database import Database
 from matplotlib import pyplot as plt
+
+sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir))
+from config import NET_TAGS
 
 # Associate strategies to each device
 # MITIGATION_FILE='../_NIST/cwe_mitigation.csv'
@@ -194,18 +197,19 @@ def plot_confusion_matrix(TP,TN,FN,FP, net_tag):
     plt.savefig("experiments/plot/conf_m_"+net_tag+".png", bbox_inches='tight')
     plt.close(fig)        
         
-
 if __name__=="__main__":
-    for network_file in ['data/real_network.json','data/hc_network_format.json']:
-        net_tag = ""
-        if "real" in network_file: net_tag="SH_net"
-        else: net_tag="HC_net"
+    for net_tag in NET_TAGS:
+        network_file = "data/"+net_tag+"-network.json"
+        file_plan = "experiments/strategy_device_"+net_tag+".json"
+        file_strategy = "experiments/strategy_computed_"+net_tag+".json"
         
-        strategy_per_device = getStrategyDevice(network_file,net_tag)
-        print(strategy_per_device)
-        getPlanStrategy("planning/planning-files",net_tag) #TODO cartelle diverse in base a net_tag
-        TP,TN,FN,FP = compare_strategies("experiments/strategy_device_"+net_tag+".json", 
-                        "experiments/strategy_computed_"+net_tag+".json",
-                        network_file)
+        # if net_tag == "SHnet":
+        #     folderplans = "planning/planning-files/real_network"
+        # else:
+        #     folderplans = "planning/planning-files/"
+        
+        # strategy_per_device = getStrategyDevice(network_file,net_tag)
+        # getPlanStrategy(folderplans,net_tag)
+        TP,TN,FN,FP = compare_strategies(file_plan, file_strategy, network_file)
         plot_confusion_matrix(TP,TN,FN,FP,net_tag)
             

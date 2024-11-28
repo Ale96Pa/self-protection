@@ -86,10 +86,17 @@ def plot_securitymetric(file_security_metrics,file_plan,net_tag,metricfield):
         
         df_plan = df_security[df_security['strategy'].isin(list_strategy_plan)]
         df_plan = df_plan[["dst",metricfield]].groupby(by=["dst"])
+        
                         
         risk0=float(df_device_0[df_device_0['dst'] == d][metricfield])
-        riskarch=mean(list(df_device_arch.get_group(d)[metricfield]))
-        riskpatch=max(list(df_device_patch.get_group(d)[metricfield]))
+        if d in dict(df_device_arch.groups).keys():
+            riskarch=mean(list(df_device_arch.get_group(d)[metricfield]))
+        else:
+            riskarch=risk0
+        if d in dict(df_device_patch.groups).keys():
+            riskpatch=max(list(df_device_patch.get_group(d)[metricfield]))
+        else:
+            riskpatch=risk0
         riskplan = risk0
         if len(list_strategy_plan)>0:
             riskplan=mean(list(df_plan.get_group(d)[metricfield]))
@@ -144,7 +151,8 @@ def plot_qos(file_security_metrics,file_qos_metrics,file_plan,folder_plans,file_
     for app in list_app:
         for d in devices:
             deviceID = d["deviceId"]
-            if "app_"+app in d["applications"]:
+            noplandict[deviceID]=[0]
+            if "app_"+app in d["applications"] or app in d["applications"]:
                 values = df_noplan[df_noplan["app"] == app].drop(['topic','app'], axis=1)
                 values_list = [x for xs in np.array(values).tolist() for x in xs]
                 if deviceID not in noplandict.keys(): noplandict[deviceID] = values_list
@@ -155,11 +163,15 @@ def plot_qos(file_security_metrics,file_qos_metrics,file_plan,folder_plans,file_
     patchdict={}
     plan={}
     for filename in os.listdir(folder_plans):
+        if "csv" not in filename: continue
         df_file = pd.read_csv(folder_plans+filename)
         name_dev = filename.replace(".csv","")
         
         for d in devices:
             deviceID = d["deviceId"]
+            archdict[deviceID]=[0]
+            patchdict[deviceID]=[0]
+            plan[deviceID]=[0]
             if name_dev == deviceID or name_dev in d["applications"]:
                 strategyIDs = list(df_file["mitigationId"])
                 for sID in strategyIDs:
@@ -236,8 +248,8 @@ if __name__=="__main__":
             file_qos_metrics = "planning/qos-metrics.csv"
             folder_plans = "planning/metrics-per-device/"
     
-        # plot_securitymetric(file_metrics_all,file_plan,net_tag,"avg_risk")
-        # plot_securitymetric(file_metrics_all,file_plan,net_tag,"num_paths")
+        plot_securitymetric(file_metrics_all,file_plan,net_tag,"avg_risk")
+        plot_securitymetric(file_metrics_all,file_plan,net_tag,"num_paths")
         
+        ## TODO CHECK
         plot_qos(file_metrics_all,file_qos_metrics,file_plan,folder_plans,file_network,"avg_latency",net_tag)
-        break

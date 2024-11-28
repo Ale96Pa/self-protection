@@ -127,5 +127,5 @@ if __name__ == "__main__":
         
         if net_tag=="HCnet":
             parse_applications(file_metrics_all,file_network,file_metrics_all)
-        remove_duplicates(file_metrics_all,file_metrics)
+        # remove_duplicates(file_metrics_all,file_metrics)
             

@@ -1,0 +1,50 @@
+{
+    "n1": {
+        "strategy": "21",
+        "cost": "2.90"
+    },
+    "n10": {
+        "strategy": "22",
+        "cost": "2.91"
+    },
+    "n11": {
+        "strategy": "19",
+        "cost": "2.96"
+    },
+    "n12": {
+        "strategy": "20",
+        "cost": "2.89"
+    },
+    "n2": {
+        "strategy": "20",
+        "cost": "2.89"
+    },
+    "n3": {
+        "strategy": "22",
+        "cost": "2.91"
+    },
+    "n4": {
+        "strategy": "20",
+        "cost": "2.89"
+    },
+    "n5": {
+        "strategy": "24",
+        "cost": "2.92"
+    },
+    "n6": {
+        "strategy": "18",
+        "cost": "2.90"
+    },
+    "n7": {
+        "strategy": "24",
+        "cost": "2.99"
+    },
+    "n8": {
+        "strategy": "21",
+        "cost": "2.90"
+    },
+    "n9": {
+        "strategy": "20",
+        "cost": "2.89"
+    }
+}

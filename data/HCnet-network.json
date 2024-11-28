@@ -650,6 +650,7 @@
         "CVE-2021-3156"
       ],
       "applications": [
+        "n7",
         "N7",
         "snapd",
         "apt",
@@ -1608,6 +1609,7 @@
         "CVE-2021-3156"
       ],
       "applications": [
+        "n2",
         "N2",
         "linux",
         "linux",
@@ -2416,6 +2418,7 @@
         "CVE-2021-3156"
       ],
       "applications": [
+        "n3",
         "N3",
         "linux",
         "linux",
@@ -3224,6 +3227,7 @@
         "CVE-2021-3156"
       ],
       "applications": [
+        "n7",
         "N7",
         "linux",
         "linux",
@@ -3779,6 +3783,7 @@
         "CVE-1999-0524"
       ],
       "applications": [
+        "n1",
         "N1"
       ]
     },
@@ -3794,6 +3799,7 @@
         "CVE-1999-0524"
       ],
       "applications": [
+        "n5",
         "N5"
       ]
     },
@@ -3822,6 +3828,7 @@
         "CVE-2017-0280"
       ],
       "applications": [
+        "n6",
         "N6",
         "tomcat",
         "7.0.40 -> Apache Software Foundation Tomcat 7.0.40",
@@ -3855,6 +3862,7 @@
         "CVE-2020-29443"
       ],
       "applications": [
+        "n12",
         "N12",
         "qemu",
         "qemu-block-extra",
@@ -3890,6 +3898,7 @@
       "publishesTo": [],
       "cveList": [],
       "applications": [
+        "n8",
         "N8"
       ]
     },
@@ -4171,6 +4180,7 @@
         "CVE-2021-3156"
       ],
       "applications": [
+        "n9",
         "N9",
         "linux",
         "linux",
@@ -4979,6 +4989,7 @@
         "CVE-2021-3156"
       ],
       "applications": [
+        "n10",
         "N10",
         "linux",
         "linux",
@@ -5787,6 +5798,7 @@
         "CVE-2021-3156"
       ],
       "applications": [
+        "n11",
         "N11",
         "linux",
         "linux",
