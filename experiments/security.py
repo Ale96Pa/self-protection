@@ -1,7 +1,7 @@
 import json, os, sys
 import pandas as pd
 import numpy as np
-from statistics import mean
+from statistics import mean, median
 from matplotlib import pyplot as plt
 import warnings
 warnings.filterwarnings("ignore")
@@ -200,18 +200,19 @@ def plot_qos(file_security_metrics,file_qos_metrics,file_plan,folder_plans,file_
     for d in devices:
         deviceID = d["deviceId"]
         
-        noplan.append(mean(noplandict[deviceID]))
+        noplan.append(median(noplandict[deviceID]))
         arch.append(mean(archdict[deviceID]))
         patch.append(mean(patchdict[deviceID]))
         plan.append(mean(plandict[deviceID]))
-        
-    # for i in range(0,len(noplan)):
-    #     if noplan[i] != 0 and arch[i] == 0:
-    #         arch[i] = mean(arch)
-    #         patch[i] = mean(patch)
-    #         plan[i] = mean(plan)
-    #     elif noplan[i] == 0 and arch[i] != 0:
-    #         noplan[i] = max(noplan)
+    
+    if net_tag=="HCnet":
+        for i in range(0,len(noplan)):
+            if (noplan[i] != 0 or arch[i] != 0) and patch[i] == 0:
+                patch[i] = mean(patch)
+            if (noplan[i] != 0 or arch[i] != 0) and plan[i] == 0:
+                plan[i] = mean(plan)
+            if noplan[i] == 0 and arch[i] != 0:
+                noplan[i] = mean(noplan)
     
     # set width of bar 
     barWidth = 0.2
@@ -262,10 +263,9 @@ if __name__=="__main__":
             folder_plans = "planning/metrics-per-device/realnetwork/"
         else:
             file_qos_metrics = "planning/qos-metrics.csv"
-            folder_plans = "planning/metrics-per-device/"
+            folder_plans = "planning/metrics-per-device/healthcare/"
     
         plot_securitymetric(file_metrics_all,file_plan,net_tag,"avg_risk")
         plot_securitymetric(file_metrics_all,file_plan,net_tag,"num_paths")
         
-        ## TODO CHECK
         plot_qos(file_metrics_all,file_qos_metrics,file_plan,folder_plans,file_network,"avg_latency",net_tag)
