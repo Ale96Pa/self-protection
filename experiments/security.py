@@ -10,13 +10,13 @@ sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), os.par
 from config import NET_TAGS
 
 
-ARCHITECTURAL_STRATEGIES = ['17','18','19','29','21','22','23','24','25']
+ARCHITECTURAL_STRATEGIES = ['17','18','19','29','21','22','23','24','25','10','20']
 PATCHING_STRATEGIES = ['1','2','3','4','5','6','7','8','9','19','11','12','13','14','15','16']
 
 COLORS = {
-    "NoPlan":"#a6611a",
-    "Architectural":"#80cdc1",
-    "Patching":"#dfc27d",
+    "NoPlan":"#e66101",
+    "Architectural":"#fdb863",
+    "Patching":"#b2abd2",
     "Trade-off":"#018571",
 }
 """
@@ -148,10 +148,10 @@ def plot_qos(file_security_metrics,file_qos_metrics,file_plan,folder_plans,file_
     noplandict={}
     df_noplan = pd.read_csv(file_qos_metrics)
     list_app = list(df_noplan["app"])
-    for app in list_app:
-        for d in devices:
-            deviceID = d["deviceId"]
-            noplandict[deviceID]=[0]
+    for d in devices:
+        deviceID = d["deviceId"]
+        noplandict[deviceID]=[0]
+        for app in list_app:
             if "app_"+app in d["applications"] or app in d["applications"]:
                 values = df_noplan[df_noplan["app"] == app].drop(['topic','app'], axis=1)
                 values_list = [x for xs in np.array(values).tolist() for x in xs]
@@ -161,30 +161,38 @@ def plot_qos(file_security_metrics,file_qos_metrics,file_plan,folder_plans,file_
     #Architectural/Patch
     archdict={}
     patchdict={}
-    plan={}
-    for filename in os.listdir(folder_plans):
-        if "csv" not in filename: continue
-        df_file = pd.read_csv(folder_plans+filename)
-        name_dev = filename.replace(".csv","")
+    plandict={}
+    for d in devices:
+        deviceID = d["deviceId"]
+        archdict[deviceID]=[0]
+        patchdict[deviceID]=[0]
+        plandict[deviceID]=[0]
+        for filename in os.listdir(folder_plans):
+            if "csv" not in filename: continue
+            df_file = pd.read_csv(folder_plans+filename)
+            name_dev = filename.replace(".csv","")
         
-        for d in devices:
-            deviceID = d["deviceId"]
-            archdict[deviceID]=[0]
-            patchdict[deviceID]=[0]
-            plan[deviceID]=[0]
             if name_dev == deviceID or name_dev in d["applications"]:
                 strategyIDs = list(df_file["mitigationId"])
                 for sID in strategyIDs:
                     if str(sID) in ARCHITECTURAL_STRATEGIES:
-                        if deviceID not in archdict.keys(): archdict[deviceID] = [float(df_file[df_file['mitigationId'] == sID][metricfield])]
-                        else: archdict[deviceID].append(float(df_file[df_file['mitigationId'] == sID][metricfield]))
+                        # if deviceID not in archdict.keys(): archdict[deviceID] = [float(df_file[df_file['mitigationId'] == sID][metricfield])]
+                        # else: archdict[deviceID].append(float(df_file[df_file['mitigationId'] == sID][metricfield]))
+                        archdict[deviceID].append(float(df_file[df_file['mitigationId'] == sID][metricfield]))
                     if str(sID) in PATCHING_STRATEGIES:
-                        if deviceID not in patchdict.keys(): patchdict[deviceID] = [float(df_file[df_file['mitigationId'] == sID][metricfield])]
-                        else: patchdict[deviceID].append(float(df_file[df_file['mitigationId'] == sID][metricfield]))
+                        # if deviceID not in patchdict.keys(): patchdict[deviceID] = [float(df_file[df_file['mitigationId'] == sID][metricfield])]
+                        # else: patchdict[deviceID].append(float(df_file[df_file['mitigationId'] == sID][metricfield]))
+                        patchdict[deviceID].append(float(df_file[df_file['mitigationId'] == sID][metricfield]))
                     if str(sID) in list(map(str, full_plan[deviceID])): 
-                        if deviceID not in plan.keys(): plan[deviceID] = [float(df_file[df_file['mitigationId'] == sID][metricfield])]
-                        else: plan[deviceID].append(float(df_file[df_file['mitigationId'] == sID][metricfield]))
-    
+                        # if deviceID not in plandict.keys(): plandict[deviceID] = [float(df_file[df_file['mitigationId'] == sID][metricfield])]
+                        # else: plandict[deviceID].append(float(df_file[df_file['mitigationId'] == sID][metricfield]))
+                        plandict[deviceID].append(float(df_file[df_file['mitigationId'] == sID][metricfield]))
+                      
+                      
+    # if net_tag=="SHnet": 
+    #     print(noplandict)
+    #     print(plandict)
+      
     noplan = []
     arch = []
     patch = []
@@ -195,7 +203,15 @@ def plot_qos(file_security_metrics,file_qos_metrics,file_plan,folder_plans,file_
         noplan.append(mean(noplandict[deviceID]))
         arch.append(mean(archdict[deviceID]))
         patch.append(mean(patchdict[deviceID]))
-        plan.append(mean(patchdict[deviceID]))
+        plan.append(mean(plandict[deviceID]))
+        
+    # for i in range(0,len(noplan)):
+    #     if noplan[i] != 0 and arch[i] == 0:
+    #         arch[i] = mean(arch)
+    #         patch[i] = mean(patch)
+    #         plan[i] = mean(plan)
+    #     elif noplan[i] == 0 and arch[i] != 0:
+    #         noplan[i] = max(noplan)
     
     # set width of bar 
     barWidth = 0.2
