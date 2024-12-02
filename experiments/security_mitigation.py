@@ -203,13 +203,13 @@ if __name__=="__main__":
         file_plan = "experiments/strategy_device_"+net_tag+".json"
         file_strategy = "experiments/strategy_computed_"+net_tag+".json"
         
-        # if net_tag == "SHnet":
-        #     folderplans = "planning/planning-files/real_network"
-        # else:
-        #     folderplans = "planning/planning-files/"
+        if net_tag == "SHnet":
+            folderplans = "planning/planning-files/real_network"
+        else:
+            folderplans = "planning/planning-files/healthcare"
         
-        # strategy_per_device = getStrategyDevice(network_file,net_tag)
-        # getPlanStrategy(folderplans,net_tag)
+        strategy_per_device = getStrategyDevice(network_file,net_tag)
+        getPlanStrategy(folderplans,net_tag)
         TP,TN,FN,FP = compare_strategies(file_plan, file_strategy, network_file)
         plot_confusion_matrix(TP,TN,FN,FP,net_tag)
             

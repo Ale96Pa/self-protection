@@ -132,6 +132,7 @@ def plot_securitymetric(file_security_metrics,file_plan,net_tag,metricfield):
     
     # Adding Xticks 
     label_y = "Cyber Risk" if metricfield=="avg_risk" else "Num. Attacks"
+    if metricfield=="avg_risk": plt.ylim(0,1)
     plt.xlabel('Devices', fontsize = 12) 
     plt.ylabel(label_y, fontsize = 12) 
     plt.xticks([r + barWidth for r in range(len(noplan))], 
@@ -243,6 +244,7 @@ def plot_qos(file_security_metrics,file_qos_metrics,file_plan,folder_plans,file_
     print()
     
     # Adding Xticks 
+    plt.ylim(0,0.6)
     plt.xlabel('Devices', fontsize = 12) 
     plt.ylabel("Latency", fontsize = 12) 
     plt.xticks([r + barWidth for r in range(len(noplan))], 
