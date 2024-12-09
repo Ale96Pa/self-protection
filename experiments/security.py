@@ -98,7 +98,7 @@ def plot_securitymetric(file_security_metrics,file_plan,net_tag,metricfield):
         else:
             riskpatch=risk0  
             
-        if riskpatch>10000: riskpatch=9500 #TODO
+        # if riskpatch>10000: riskpatch=9500 #TODO
         
         riskplan = risk0
         if len(list_strategy_plan)>0:
@@ -204,8 +204,8 @@ def plot_qos(file_security_metrics,file_qos_metrics,file_plan,folder_plans,file_
     for d in devices:
         deviceID = d["deviceId"]
         
-        if mean(noplandict[deviceID])>0.35: noplan.append(0.31) #TODO
-        else:noplan.append(mean(noplandict[deviceID]))
+        # if mean(noplandict[deviceID])>0.35: noplan.append(0.31) #TODO
+        # else:noplan.append(mean(noplandict[deviceID]))
         
         arch.append(mean(archdict[deviceID]))
         patch.append(mean(patchdict[deviceID]))
