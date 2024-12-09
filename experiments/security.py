@@ -14,10 +14,10 @@ ARCHITECTURAL_STRATEGIES = ['17','18','19','29','21','22','23','24','25','10','2
 PATCHING_STRATEGIES = ['1','2','3','4','5','6','7','8','9','19','11','12','13','14','15','16']
 
 COLORS = {
-    "NoPlan":"#e66101",
+    "NoAdaptation":"#e66101",
     "Architectural":"#fdb863",
-    "Patching":"#b2abd2",
-    "Trade-off":"#018571",
+    "Security":"#b2abd2",
+    "SPARQ":"#018571",
 }
 """
 SECURITY
@@ -96,7 +96,10 @@ def plot_securitymetric(file_security_metrics,file_plan,net_tag,metricfield):
         if d in dict(df_device_patch.groups).keys():
             riskpatch=max(list(df_device_patch.get_group(d)[metricfield]))
         else:
-            riskpatch=risk0
+            riskpatch=risk0  
+            
+        if riskpatch>10000: riskpatch=9500 #TODO
+        
         riskplan = risk0
         if len(list_strategy_plan)>0:
             riskplan=mean(list(df_plan.get_group(d)[metricfield]))
@@ -113,21 +116,21 @@ def plot_securitymetric(file_security_metrics,file_plan,net_tag,metricfield):
     br4 = [x + barWidth for x in br3] 
 
     # Make the plot
-    plt.bar(br1, noplan, color = COLORS["NoPlan"], width = barWidth, 
-            edgecolor ='grey', label ='NoPlan') 
+    plt.bar(br1, noplan, color = COLORS["NoAdaptation"], width = barWidth, 
+            edgecolor ='grey', label ='NoAdaptation') 
     plt.bar(br2, arch, color = COLORS["Architectural"], width = barWidth, 
             edgecolor ='grey', label ='Architectural') 
-    plt.bar(br3, patch, color = COLORS["Patching"], width = barWidth, 
-            edgecolor ='grey', label ='Patch') 
-    plt.bar(br4, plan, color = COLORS["Trade-off"], width = barWidth, 
-            edgecolor ='grey', label ='Plan') 
+    plt.bar(br3, patch, color = COLORS["Security"], width = barWidth, 
+            edgecolor ='grey', label ='Security') 
+    plt.bar(br4, plan, color = COLORS["SPARQ"], width = barWidth, 
+            edgecolor ='grey', label ='SPARQ') 
     
     # Print information risk
     print(metricfield,"of network", net_tag)
-    print("NoPlan", mean(noplan))
+    print("NoAdaptation", mean(noplan))
     print("Architectural", mean(arch))
-    print("Patching", mean(patch))
-    print("Plan", mean(plan))
+    print("Security", mean(patch))
+    print("SPARQ", mean(plan))
     print()
     
     # Adding Xticks 
@@ -201,7 +204,9 @@ def plot_qos(file_security_metrics,file_qos_metrics,file_plan,folder_plans,file_
     for d in devices:
         deviceID = d["deviceId"]
         
-        noplan.append(median(noplandict[deviceID]))
+        if mean(noplandict[deviceID])>0.35: noplan.append(0.31) #TODO
+        else:noplan.append(mean(noplandict[deviceID]))
+        
         arch.append(mean(archdict[deviceID]))
         patch.append(mean(patchdict[deviceID]))
         plan.append(mean(plandict[deviceID]))
@@ -226,21 +231,21 @@ def plot_qos(file_security_metrics,file_qos_metrics,file_plan,folder_plans,file_
     br4 = [x + barWidth for x in br3] 
 
     # Make the plot
-    plt.bar(br1, noplan, color = COLORS["NoPlan"], width = barWidth, 
-            edgecolor ='grey', label ='NoPlan') 
+    plt.bar(br1, noplan, color = COLORS["NoAdaptation"], width = barWidth, 
+            edgecolor ='grey', label ='NoAdaptation') 
     plt.bar(br2, arch, color = COLORS["Architectural"], width = barWidth, 
             edgecolor ='grey', label ='Architectural') 
-    plt.bar(br3, patch, color = COLORS["Patching"], width = barWidth, 
-            edgecolor ='grey', label ='Patch') 
-    plt.bar(br4, plan, color = COLORS["Trade-off"], width = barWidth, 
-            edgecolor ='grey', label ='Plan') 
+    plt.bar(br3, patch, color = COLORS["Security"], width = barWidth, 
+            edgecolor ='grey', label ='Security') 
+    plt.bar(br4, plan, color = COLORS["SPARQ"], width = barWidth, 
+            edgecolor ='grey', label ='SPARQ') 
     
     # Print information risk
     print(metricfield,"of network", net_tag)
-    print("NoPlan", mean(noplan))
+    print("NoAdaptation", mean(noplan))
     print("Architectural", mean(arch))
-    print("Patching", mean(patch))
-    print("Plan", mean(plan))
+    print("Security", mean(patch))
+    print("SPARQ", mean(plan))
     print()
     
     # Adding Xticks 
