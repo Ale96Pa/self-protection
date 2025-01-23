@@ -70,13 +70,71 @@ def format_security_metrics(input_metrics, output_metrics):
     df_nodup = df.groupby('strategy').mean().reset_index()
     df_nodup.to_csv(output_metrics, index=False)
 
-# def run_ag_simulator():
 if __name__ == "__main__":
     
-    for net_tag in NET_TAGS:
-        file_metrics_all = "data/"+net_tag+"-security-metrics-all.csv"
-        file_metrics = "data/"+net_tag+"-security-metrics.csv"
-        file_network = "data/"+net_tag+"-network.json"
+    input_file_p= sys.argv[1]
+    net_tag_p= sys.argv[2]
+    
+    if input_file_p==0 and net_tag_p==0:
+        for net_tag in NET_TAGS:
+            file_metrics_all = "data/"+net_tag+"-security-metrics-all.csv"
+            file_metrics = "data/"+net_tag+"-security-metrics.csv"
+            file_network = "data/"+net_tag+"-network.json"
+            
+            with open(file_network) as nf:
+                content = json.load(nf)
+            devices=content["devices"]
+            vulnerabilities=content["vulnerabilities"]
+            edges=content["edges"]
+
+            ## no strategy
+            metrics_nostrategy=no_strategy(devices,vulnerabilities,edges)
+
+            metrics=metrics_nostrategy
+            with open(file_metrics_all, 'w', encoding='utf8', newline='') as output_file:
+                fc = csv.DictWriter(output_file, fieldnames=metrics[0].keys())
+                fc.writeheader()
+                fc.writerows(metrics)
+            print("Simulation no strategy protection")
+
+            ## host
+            metrics_host=[]
+            for d in devices:
+                devices_h = [dev for dev in devices if dev['id'] != d["id"]]
+                metrics_host+=strategy_host(devices_h,vulnerabilities,edges,d)
+                print("Simulation strategy protection for host ", d["id"])
+            
+            metrics=metrics_nostrategy+metrics_host
+            with open(file_metrics_all, 'w', encoding='utf8', newline='') as output_file:
+                fc = csv.DictWriter(output_file, fieldnames=metrics[0].keys())
+                fc.writeheader()
+                fc.writerows(metrics)
+
+            ## vuln
+            metrics_vuln=[]
+            for d in devices:
+                for v in vulnerabilities:
+                    dev_vuln=get_vulns_by_hostid(d['id'],devices)
+                    if v['id'] in dev_vuln[:100]:
+                        metrics_vuln+=strategy_vulnerability(devices,vulnerabilities,edges,d,v, net_tag)
+                        # print(d["id"],v["id"])
+                        print("Simulation patching", v['id'], "in host ", d["id"])
+                print("Simulation patching vulnerabilities in host ", d["id"])
+                    
+            metrics=metrics_nostrategy+metrics_host+metrics_vuln
+            with open(file_metrics_all, 'w', encoding='utf8', newline='') as output_file:
+                fc = csv.DictWriter(output_file, fieldnames=metrics[0].keys())
+                fc.writeheader()
+                fc.writerows(metrics)
+                
+            
+            if net_tag=="HCnet":
+                parse_applications(file_metrics_all,file_network,file_metrics_all)
+            
+    else:
+        file_metrics_all = "data/"+net_tag_p+"-security-metrics-all.csv"
+        file_metrics = "data/"+net_tag_p+"-security-metrics.csv"
+        file_network = input_file_p
         
         with open(file_network) as nf:
             content = json.load(nf)
@@ -113,7 +171,7 @@ if __name__ == "__main__":
             for v in vulnerabilities:
                 dev_vuln=get_vulns_by_hostid(d['id'],devices)
                 if v['id'] in dev_vuln[:100]:
-                    metrics_vuln+=strategy_vulnerability(devices,vulnerabilities,edges,d,v, net_tag)
+                    metrics_vuln+=strategy_vulnerability(devices,vulnerabilities,edges,d,v, net_tag_p)
                     # print(d["id"],v["id"])
                     print("Simulation patching", v['id'], "in host ", d["id"])
             print("Simulation patching vulnerabilities in host ", d["id"])
@@ -123,9 +181,3 @@ if __name__ == "__main__":
             fc = csv.DictWriter(output_file, fieldnames=metrics[0].keys())
             fc.writeheader()
             fc.writerows(metrics)
-            
-        
-        if net_tag=="HCnet":
-            parse_applications(file_metrics_all,file_network,file_metrics_all)
-        # remove_duplicates(file_metrics_all,file_metrics)
-            
