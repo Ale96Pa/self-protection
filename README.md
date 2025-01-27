@@ -32,14 +32,11 @@ This repository contains the following folders:
 
 Store in the folder `data` the json format of your network. You will find two preconfigured network (smart home, SH, and healthcare, HC). Adjust the parameters in the `config.py` file.
 
-### 2 Run AG simulations
-Using the following [instructions](agSimulator/README.md).
+### 2. Run [AG simulations](agSimulator/README.md)
 
-### 3 Run QoS simulations
-Using the following [instructions](qosSimulator/README.md).
+### 3. Run [QoS simulations](qosSimulator/README.md)
 
-### 4 Run planner
-Using the following [instructions](planning/README.md).
+### 4. Run the [AI planner](planning/README.md)
 
 ## Cite this work
 
