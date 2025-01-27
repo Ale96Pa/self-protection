@@ -2,7 +2,6 @@ import os, json, time, nvdlib, uuid
 import networkx as nx
 import pandas as pd
 
-MITIGATION_FILE='../../_NIST/cve2CweMitigationTable.csv'
 DEVICES_CVE={
     "printing_source":"toshiba printers",
     "energymanagement_source":"energy management cloud services",
@@ -100,7 +99,7 @@ def generate_dev_list(iot_traces, vuln_file):
     return devices
 
 if __name__ == "__main__":
-    iot_trace_file="qos-simulator/scenarios/real-traces-default.json"
+    iot_trace_file="qosSimulator/scenarios/real-traces-default.json"
     vuln_file="data/real-network-vulnerabilities.json"
     
     devices = generate_dev_list(iot_trace_file, vuln_file)

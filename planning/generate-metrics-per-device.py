@@ -14,8 +14,8 @@ strategies_dict = 'configurations-ids_realnetwork.csv'
 metrics_per_device_file = 'metrics-per-device/{}.csv'
 
 metrics_file = 'SHnet-security-metrics.csv'
-# mapping_file = '../qos-simulator/mapping.txt'
-# output_file = '../qos-simulator/security-metrics-mapped.csv'
+# mapping_file = '../qosSimulator/mapping.txt'
+# output_file = '../qosSimulator/security-metrics-mapped.csv'
 
 
 mapping_dict = dict()

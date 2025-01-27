@@ -8,6 +8,7 @@ Based on the analysis outcomes, SPARQ provides mitigation plans to reduce the cy
 
 ## Requirements
 
+Currently, SPARQ runs on Linux machines.
 You can find all requirements in the file requirements.txt and install using the following command:
 
 `pip install requirements.txt`
@@ -23,7 +24,7 @@ This repository contains the following folders:
 - `experiments`: contains the results and plots of the performed experiments
 
 - `planning`: contains all the files to plan the optimal set of mitigation actions
-  
+
 - `qosSimulator`: contains all the files to simulate mitigation actions with the queueing network models
 
 ## Installation instruction
