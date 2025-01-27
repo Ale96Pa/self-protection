@@ -16,15 +16,15 @@ You can find all requirements in the file requirements.txt and install using the
 
 This repository contains the following folders:
 
-- `ag-simulator`: contains all the files to simulate mitigation actions with the attack graph model (more information available in the dedicated page - URL)
+- `agSimulator`: contains all the files to simulate mitigation actions with the attack graph model
 
 - `data`: contains the data file for the healtchare and smart home networks used in the paper
 
 - `experiments`: contains the results and plots of the performed experiments
 
-- `planning`: contains all the files to plan the optimal set of mitigation actions (more information available in the dedicated page - URL)
-
-- `qos-simulator`: contains all the files to simulate mitigation actions with the queueing network models (more information available in the dedicated page - URL)
+- `planning`: contains all the files to plan the optimal set of mitigation actions
+  
+- `qosSimulator`: contains all the files to simulate mitigation actions with the queueing network models
 
 ## Installation instruction
 
@@ -33,10 +33,13 @@ This repository contains the following folders:
 Store in the folder `data` the json format of your network. You will find two preconfigured network (smart home, SH, and healthcare, HC). Adjust the parameters in the `config.py` file.
 
 ### 2 Run AG simulations
+Using the following [instructions](agSimulator/README.md).
 
 ### 3 Run QoS simulations
+Using the following [instructions](qosSimulator/README.md).
 
-### 4 Run planners
+### 4 Run planner
+Using the following [instructions](planning/README.md).
 
 ## Cite this work
 
