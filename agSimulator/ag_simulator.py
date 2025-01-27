@@ -2,8 +2,8 @@ import json, csv, os.path, sys
 import pandas as pd
 sys.path.append(os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir))
 
-from attack_graph import generate_ag_model, generate_paths, analyze_paths, analyze_network, get_vulns_by_hostid
-from remove_duplicates import remove_duplicates, parse_applications
+from attack_graph import generate_ag_model, generate_paths, analyze_network, get_vulns_by_hostid
+from remove_duplicates import parse_applications
 from config import NET_TAGS
 
 #Startegy IDs: 10,11,16,17,25
@@ -70,11 +70,7 @@ def format_security_metrics(input_metrics, output_metrics):
     df_nodup = df.groupby('strategy').mean().reset_index()
     df_nodup.to_csv(output_metrics, index=False)
 
-if __name__ == "__main__":
-    
-    input_file_p= sys.argv[1]
-    net_tag_p= sys.argv[2]
-    
+def run_ag_simulator(input_file_p,net_tag_p):
     if input_file_p==0 and net_tag_p==0:
         for net_tag in NET_TAGS:
             file_metrics_all = "data/"+net_tag+"-security-metrics-all.csv"
@@ -181,3 +177,11 @@ if __name__ == "__main__":
             fc = csv.DictWriter(output_file, fieldnames=metrics[0].keys())
             fc.writeheader()
             fc.writerows(metrics)
+
+if __name__ == "__main__":
+    
+    input_file_p= sys.argv[1]
+    net_tag_p= sys.argv[2]
+    run_ag_simulator(input_file_p,net_tag_p)
+    
+    
