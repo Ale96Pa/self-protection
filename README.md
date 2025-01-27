@@ -28,6 +28,8 @@ This repository contains the following folders:
 
 ## Installation instruction
 
+SPARQ is a modular project and can be used for different purposes related to security with Attack Graph, simulations with Queueing Network, and AI planning. For this reason, you need to run different modules to reproduce the entire SPARQ pipeline.
+
 ### 1. Prerequisites
 
 Store in the folder `data` the json format of your network. You will find two preconfigured network (smart home, SH, and healthcare, HC). Adjust the parameters in the `config.py` file.
